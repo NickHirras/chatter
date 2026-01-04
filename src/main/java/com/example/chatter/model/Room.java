@@ -21,7 +21,7 @@ public class Room extends BaseEntity {
 
     private String name;
     private String description;
-    private boolean isPublic;
+    private boolean isPrivateRoom;
 
     @ManyToMany
     @JoinTable(name = "room_moderators", joinColumns = @JoinColumn(name = "room_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
@@ -30,10 +30,10 @@ public class Room extends BaseEntity {
     public Room() {
     }
 
-    public Room(String name, String description, boolean isPublic) {
+    public Room(String name, String description, boolean isPrivateRoom) {
         this.name = name;
         this.description = description;
-        this.isPublic = isPublic;
+        this.isPrivateRoom = isPrivateRoom;
     }
 
     public Long getId() {
@@ -60,12 +60,12 @@ public class Room extends BaseEntity {
         this.description = description;
     }
 
-    public boolean isPublic() {
-        return isPublic;
+    public boolean isPrivateRoom() {
+        return isPrivateRoom;
     }
 
-    public void setPublic(boolean aPublic) {
-        isPublic = aPublic;
+    public void setPrivateRoom(boolean privateRoom) {
+        isPrivateRoom = privateRoom;
     }
 
     public Set<User> getModerators() {

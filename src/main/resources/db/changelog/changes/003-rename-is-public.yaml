@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-rename-is-public
+      author: nick
+      changes:
+        - renameColumn:
+            tableName: rooms
+            oldColumnName: is_public
+            newColumnName: is_private_room
+            columnDataType: BOOLEAN
+        - update:
+            tableName: rooms
+            columns:
+              - column:
+                  name: is_private_room
+                  valueBoolean: false
+            where: is_private_room IS NULL OR is_private_room = 1

@@ -88,7 +88,7 @@ public class DataInitializer {
         };
 
         for (String[] roomData : roomsData) {
-            Room room = new Room(roomData[0], roomData[1], true);
+            Room room = new Room(roomData[0], roomData[1], false);
 
             // Set Moderators
             Set<User> moderators = new HashSet<>();
