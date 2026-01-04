@@ -24,7 +24,7 @@ databaseChangeLog:
                   type: BOOLEAN
               - column:
                   name: created_at
-                  type: TIMESTAMP
+                  type: BIGINT
               - column:
                   name: created_by_id
                   type: BIGINT
@@ -78,7 +78,7 @@ databaseChangeLog:
                     references: messages(id)
               - column:
                   name: created_at
-                  type: TIMESTAMP
+                  type: BIGINT
               - column:
                   name: created_by_id
                   type: BIGINT
