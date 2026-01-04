@@ -24,6 +24,10 @@ body {
     width: 100vw;
 }
 
+.sidebar-overlay {
+    display: none;
+}
+
 /* Sidebar Styles */
 .sidebar {
     background-color: var(--sidebar-bg);

@@ -42,7 +42,9 @@
                     <c:choose>
                         <c:when test="${not empty rooms}">
                             <c:forEach var="room" items="${rooms}">
-                                <a href="#" class="room-item">
+                                <a href="#" class="room-item" hx-get="/rooms/${room.id}/messages"
+                                    hx-target="#main-content" hx-swap="innerHTML"
+                                    hx-on::after-request="document.querySelectorAll('.room-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
                                     <span style="margin-right: 0.5rem;">#</span>
                                     <c:out value="${room.name}" />
                                 </a>
@@ -56,7 +58,7 @@
             </aside>
 
             <!-- Main Content -->
-            <main class="main-content">
+            <main id="main-content" class="main-content">
                 <header class="content-header">
                     <button id="sidebar-toggle" class="sidebar-toggle">
                         ☰
@@ -72,29 +74,6 @@
                             <small>You are currently in the general overview.</small>
                         </footer>
                     </article>
-
-                    <c:if test="${not empty rooms}">
-                        <div class="grid">
-                            <c:forEach var="room" items="${rooms}" end="2">
-                                <article>
-                                    <header><strong>
-                                            <c:out value="${room.name}" />
-                                        </strong></header>
-                                    <p>
-                                        <c:out value="${room.description}" />
-                                    </p>
-                                    <footer>
-                                        <small>
-                                            <c:choose>
-                                                <c:when test="${not room.privateRoom}">🌐 Public</c:when>
-                                                <c:otherwise>🔒 Private</c:otherwise>
-                                            </c:choose>
-                                        </small>
-                                    </footer>
-                                </article>
-                            </c:forEach>
-                        </div>
-                    </c:if>
                 </section>
             </main>
         </div>
