@@ -34,6 +34,15 @@ java -jar target/chatter-0.0.1-SNAPSHOT.jar
 The application will start on port 8080.
 Access the home page at: [http://localhost:8080](http://localhost:8080)
 
+## Credentials
+
+The application is pre-seeded with the following users:
+
+| Name | Email | Password | Role |
+|------|-------|----------|------|
+| Bill Gates | bill@localhost | password | Standard User |
+| Linus Torvalds | linus@localhost | password | Admin User |
+
 ## Project Structure
 
 - `src/main/java`: Java source code
