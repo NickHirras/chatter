@@ -42,8 +42,9 @@
                     <c:choose>
                         <c:when test="${not empty rooms}">
                             <c:forEach var="room" items="${rooms}">
-                                <a href="#" class="room-item" hx-get="/rooms/${room.id}/messages"
-                                    hx-target="#main-content" hx-swap="innerHTML"
+                                <a href="#" class="room-item ${room.id == param.roomId ? 'active' : ''}"
+                                    hx-get="/rooms/${room.id}/messages" hx-target="#main-content" hx-swap="innerHTML"
+                                    hx-push-url="?roomId=${room.id}"
                                     hx-on::after-request="document.querySelectorAll('.room-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
                                     <span style="margin-right: 0.5rem;">#</span>
                                     <c:out value="${room.name}" />
@@ -59,22 +60,29 @@
 
             <!-- Main Content -->
             <main id="main-content" class="main-content">
-                <header class="content-header">
-                    <button id="sidebar-toggle" class="sidebar-toggle">
-                        ☰
-                    </button>
-                    <h5 style="margin: 0;">Welcome to Chatter</h5>
-                </header>
+                <c:choose>
+                    <c:when test="${not empty room}">
+                        <jsp:include page="partials/_messages.jsp" />
+                    </c:when>
+                    <c:otherwise>
+                        <header class="content-header">
+                            <button id="sidebar-toggle" class="sidebar-toggle">
+                                ☰
+                            </button>
+                            <h5 style="margin: 0;">Welcome to Chatter</h5>
+                        </header>
 
-                <section class="message-area">
-                    <article>
-                        <header>Getting Started</header>
-                        <p>Select a room from the sidebar to start chatting!</p>
-                        <footer>
-                            <small>You are currently in the general overview.</small>
-                        </footer>
-                    </article>
-                </section>
+                        <section class="message-area">
+                            <article>
+                                <header>Getting Started</header>
+                                <p>Select a room from the sidebar to start chatting!</p>
+                                <footer>
+                                    <small>You are currently in the general overview.</small>
+                                </footer>
+                            </article>
+                        </section>
+                    </c:otherwise>
+                </c:choose>
             </main>
         </div>
     </body>
