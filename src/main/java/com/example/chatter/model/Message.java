@@ -7,6 +7,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "messages")
@@ -25,6 +28,9 @@ public class Message extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "parent_id")
     private Message parent;
+
+    @Transient
+    private List<Message> replies = new ArrayList<>();
 
     public Message() {
     }
@@ -64,5 +70,13 @@ public class Message extends BaseEntity {
 
     public void setParent(Message parent) {
         this.parent = parent;
+    }
+
+    public List<Message> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(List<Message> replies) {
+        this.replies = replies;
     }
 }

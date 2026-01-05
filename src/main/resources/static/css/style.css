@@ -115,6 +115,30 @@ body {
     min-height: 0;
 }
 
+.message-item {
+    background-color: #383a40;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.message-item:hover {
+    background-color: #404249;
+}
+
+.reply-thread {
+    position: relative;
+}
+
+.reply-thread::before {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--border-color);
+}
+
 /* Mobile Responsiveness */
 .sidebar-toggle {
     display: none;

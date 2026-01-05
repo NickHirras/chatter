@@ -15,20 +15,8 @@
             <c:choose>
                 <c:when test="${not empty messages}">
                     <c:forEach var="message" items="${messages}">
-                        <article style="margin-bottom: 1rem; padding: 0.75rem;">
-                            <header
-                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; padding: 0; border: none; background: none;">
-                                <strong>
-                                    <c:out value="${message.createdBy.name}" />
-                                </strong>
-                                <small style="color: #888;">
-                                    <fmt:formatDate value="${message.createdAtDate}" pattern="MMM d, h:mm a" />
-                                </small>
-                            </header>
-                            <p style="margin: 0;">
-                                <c:out value="${message.content}" />
-                            </p>
-                        </article>
+                        <c:set var="msg" value="${message}" scope="request" />
+                        <jsp:include page="_message_item.jsp" />
                     </c:forEach>
                 </c:when>
                 <c:otherwise>
