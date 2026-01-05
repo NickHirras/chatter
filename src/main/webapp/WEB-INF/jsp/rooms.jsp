@@ -9,10 +9,11 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
         <link rel="stylesheet" href="/css/style.css">
         <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+        <script src="https://unpkg.com/htmx.org@2.0.4/dist/ext/preload.js"></script>
         <script src="/js/ui.js"></script>
     </head>
 
-    <body>
+    <body hx-ext="preload">
         <div class="app-container">
             <!-- Mobile Sidebar Overlay -->
             <div id="sidebar-overlay" class="sidebar-overlay"></div>
@@ -43,6 +44,7 @@
                         <c:when test="${not empty rooms}">
                             <c:forEach var="room" items="${rooms}">
                                 <a href="#" class="room-item ${room.id == param.roomId ? 'active' : ''}"
+                                    preload="mouseover"
                                     hx-get="/rooms/${room.id}/messages" hx-target="#main-content" hx-swap="innerHTML"
                                     hx-push-url="?roomId=${room.id}"
                                     hx-on::after-request="document.querySelectorAll('.room-item').forEach(el => el.classList.remove('active')); this.classList.add('active');">
