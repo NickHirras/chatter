@@ -5,7 +5,7 @@
         <div id="load-more-trigger"
              hx-get="/rooms/${room_id}/messages/older?page=${currentPage + 1}"
              hx-trigger="intersect once"
-             hx-swap="beforebegin"
+             hx-swap="outerHTML"
              hx-indicator="#loading-spinner">
         </div>
     </c:when>
