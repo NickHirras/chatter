@@ -11,18 +11,20 @@
             </small>
         </header>
 
-        <section class="message-area">
-            <c:choose>
-                <c:when test="${not empty messages}">
-                    <c:forEach var="message" items="${messages}">
-                        <c:set var="msg" value="${message}" scope="request" />
-                        <jsp:include page="_message_item.jsp" />
-                    </c:forEach>
-                </c:when>
-                <c:otherwise>
-                    <div style="text-align: center; padding: 2rem; color: #888;">
-                        <p>No messages yet. Be the first to say hello!</p>
-                    </div>
-                </c:otherwise>
-            </c:choose>
+        <section class="message-area" style="display: flex; flex-direction: column-reverse;">
+            <div id="message-list-container" style="display: flex; flex-direction: column-reverse;">
+                <c:choose>
+                    <c:when test="${not empty messages}">
+                        <jsp:include page="_message_list.jsp" />
+                    </c:when>
+                    <c:otherwise>
+                        <div style="text-align: center; padding: 2rem; color: #888;">
+                            <p>No messages yet. Be the first to say hello!</p>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <div id="loading-spinner" class="htmx-indicator" style="text-align: center; display: none;">
+                <p>Loading...</p>
+            </div>
         </section>
